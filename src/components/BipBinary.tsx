@@ -95,7 +95,7 @@ const BipBinary: React.FC<BipBinaryProps> = ({ onBack }) => {
             BIP39 Binary Reference
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl">
-            First 100 BIP39 words with their indices and 11-bit binary representations in OMR format.
+            All 2048 BIP39 words with their indices and 11-bit binary representations in OMR format.
             Filled circles represent 1s, empty circles represent 0s.
           </p>
         </div>
@@ -129,11 +129,11 @@ const BipBinary: React.FC<BipBinaryProps> = ({ onBack }) => {
           )}
         </div>
 
-        {/* Table Container */}
+        {/* Table Container with Scrollbar */}
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 overflow-hidden">
-          <div className="overflow-x-auto">
+          <div className="max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-track-slate-800 scrollbar-thumb-slate-600 hover:scrollbar-thumb-slate-500">
             <table className="w-full">
-              <thead className="bg-slate-800 border-b border-slate-700">
+              <thead className="bg-slate-800 border-b border-slate-700 sticky top-0 z-10">
                 <tr>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-slate-300 uppercase tracking-wider">
                     Index
@@ -152,7 +152,7 @@ const BipBinary: React.FC<BipBinaryProps> = ({ onBack }) => {
                     <tr key={index} className="hover:bg-slate-800/30 transition-colors">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm font-mono text-cyan-400 bg-slate-800 px-3 py-1 rounded-md inline-block">
-                          {index.toString().padStart(3, '0')}
+                          {index.toString().padStart(4, '0')}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -200,7 +200,7 @@ const BipBinary: React.FC<BipBinaryProps> = ({ onBack }) => {
             <p className="mt-2 font-medium text-slate-300">Search Tips:</p>
             <ul className="list-disc list-inside mt-1 space-y-1">
               <li>Search by word: Type any part of a BIP39 word (e.g., "aban" finds "abandon")</li>
-              <li>Search by index: Type the index number (e.g., "0", "42", "99")</li>
+              <li>Search by index: Type the index number (e.g., "0", "42", "1999")</li>
               <li>Search is case-insensitive and supports partial matches</li>
             </ul>
           </div>

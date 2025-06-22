@@ -95,7 +95,7 @@ const BipBinary: React.FC<BipBinaryProps> = ({ onBack }) => {
             BIP39 Binary Reference
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl">
-            All 2048 BIP39 words with their indices and 11-bit binary representations in OMR format.
+            All 2048 BIP39 words with their indices and 11-bit binary representations.
             Filled circles represent 1s, empty circles represent 0s.
           </p>
         </div>
@@ -142,7 +142,7 @@ const BipBinary: React.FC<BipBinaryProps> = ({ onBack }) => {
                     BIP39 Word
                   </th>
                   <th className="px-6 py-4 text-center text-sm font-semibold text-slate-300 uppercase tracking-wider">
-                    Binary (OMR Style)
+                    Binary 
                   </th>
                 </tr>
               </thead>
@@ -183,7 +183,7 @@ const BipBinary: React.FC<BipBinaryProps> = ({ onBack }) => {
 
         {/* Legend */}
         <div className="mt-8 bg-slate-800/30 rounded-xl p-6 border border-slate-700">
-          <h3 className="text-lg font-semibold mb-4 text-cyan-400">OMR Binary Legend</h3>
+          <h3 className="text-lg font-semibold mb-4 text-cyan-400">Binary Guide</h3>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="flex items-center space-x-4">
               <BinaryCircle bit="0" />

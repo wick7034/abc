@@ -1,5 +1,5 @@
-import React from 'react';
-import { Shield, ArrowLeft } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { Shield, ArrowLeft, Search, X } from 'lucide-react';
 import { bip39Words } from '../data/bip39Words';
 
 interface BinaryCircleProps {
@@ -36,6 +36,33 @@ interface BipBinaryProps {
 }
 
 const BipBinary: React.FC<BipBinaryProps> = ({ onBack }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // Filter words based on search term (search by index or word)
+  const filteredWords = useMemo(() => {
+    if (!searchTerm.trim()) {
+      return bip39Words.map((word, index) => ({ word, index }));
+    }
+
+    const searchLower = searchTerm.toLowerCase().trim();
+    
+    return bip39Words
+      .map((word, index) => ({ word, index }))
+      .filter(({ word, index }) => {
+        // Search by word (partial match)
+        const wordMatch = word.toLowerCase().includes(searchLower);
+        
+        // Search by index (exact match or starts with)
+        const indexMatch = index.toString().includes(searchLower);
+        
+        return wordMatch || indexMatch;
+      });
+  }, [searchTerm]);
+
+  const clearSearch = () => {
+    setSearchTerm('');
+  };
+
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       {/* Header */}
@@ -73,6 +100,35 @@ const BipBinary: React.FC<BipBinaryProps> = ({ onBack }) => {
           </p>
         </div>
 
+        {/* Search Bar */}
+        <div className="mb-6">
+          <div className="relative max-w-md">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 text-slate-400" />
+            </div>
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search by index or word..."
+              className="block w-full pl-10 pr-10 py-3 border border-slate-600 rounded-lg bg-slate-800 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all"
+            />
+            {searchTerm && (
+              <button
+                onClick={clearSearch}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-300 transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            )}
+          </div>
+          {searchTerm && (
+            <div className="mt-2 text-sm text-slate-400">
+              Found {filteredWords.length} result{filteredWords.length !== 1 ? 's' : ''} for "{searchTerm}"
+            </div>
+          )}
+        </div>
+
         {/* Table Container */}
         <div className="bg-slate-800/50 rounded-xl border border-slate-700 overflow-hidden">
           <div className="overflow-x-auto">
@@ -91,23 +147,35 @@ const BipBinary: React.FC<BipBinaryProps> = ({ onBack }) => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-700">
-                {bip39Words.map((word, index) => (
-                  <tr key={index} className="hover:bg-slate-800/30 transition-colors">
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-mono text-cyan-400 bg-slate-800 px-3 py-1 rounded-md inline-block">
-                        {index.toString().padStart(3, '0')}
+                {filteredWords.length > 0 ? (
+                  filteredWords.map(({ word, index }) => (
+                    <tr key={index} className="hover:bg-slate-800/30 transition-colors">
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm font-mono text-cyan-400 bg-slate-800 px-3 py-1 rounded-md inline-block">
+                          {index.toString().padStart(3, '0')}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-lg font-semibold text-white">
+                          {word}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <BinaryDisplay index={index} />
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={3} className="px-6 py-12 text-center">
+                      <div className="text-slate-400">
+                        <Search className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                        <p className="text-lg font-medium">No results found</p>
+                        <p className="text-sm">Try searching with a different term</p>
                       </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-lg font-semibold text-white">
-                        {word}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <BinaryDisplay index={index} />
                     </td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>
@@ -129,6 +197,12 @@ const BipBinary: React.FC<BipBinaryProps> = ({ onBack }) => {
           <div className="mt-4 text-sm text-slate-400">
             <p>Each word index is represented as an 11-bit binary number (2^11 = 2048 possible values).</p>
             <p>This format is commonly used in Optical Mark Recognition (OMR) systems for data encoding.</p>
+            <p className="mt-2 font-medium text-slate-300">Search Tips:</p>
+            <ul className="list-disc list-inside mt-1 space-y-1">
+              <li>Search by word: Type any part of a BIP39 word (e.g., "aban" finds "abandon")</li>
+              <li>Search by index: Type the index number (e.g., "0", "42", "99")</li>
+              <li>Search is case-insensitive and supports partial matches</li>
+            </ul>
           </div>
         </div>
       </div>

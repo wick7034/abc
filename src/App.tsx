@@ -16,10 +16,13 @@ import {
   Mail,
   Twitter,
   Github,
-  Linkedin
+  Linkedin,
+  Binary
 } from 'lucide-react';
+import BipBinary from './components/BipBinary';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState<'home' | 'bip-binary'>('home');
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const testimonials = [
@@ -48,6 +51,10 @@ function App() {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
+  if (currentPage === 'bip-binary') {
+    return <BipBinary onBack={() => setCurrentPage('home')} />;
+  }
+
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       {/* Header */}
@@ -65,6 +72,13 @@ function App() {
               <a href="#products" className="text-slate-300 hover:text-cyan-400 transition-colors">Products</a>
               <a href="#how-it-works" className="text-slate-300 hover:text-cyan-400 transition-colors">How It Works</a>
               <a href="#testimonials" className="text-slate-300 hover:text-cyan-400 transition-colors">Reviews</a>
+              <button 
+                onClick={() => setCurrentPage('bip-binary')}
+                className="flex items-center space-x-2 text-slate-300 hover:text-cyan-400 transition-colors"
+              >
+                <Binary className="h-4 w-4" />
+                <span>BIP Binary</span>
+              </button>
             </nav>
             <button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105">
               Get Started

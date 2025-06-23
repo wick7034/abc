@@ -27,7 +27,7 @@ function App() {
 
   const testimonials = [
     {
-      text: "Steelphrase gives me complete peace of mind. The build quality is exceptional and it fits perfectly in my wallet.",
+      text: "Coldphrase gives me complete peace of mind. The build quality is exceptional and it fits perfectly in my wallet.",
       author: "Alex Chen",
       role: "Crypto Investor"
     },
@@ -64,7 +64,7 @@ function App() {
             <div className="flex items-center space-x-2">
               <Shield className="h-8 w-8 text-cyan-400" />
               <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                Steelphrase
+                Coldphrase
               </span>
             </div>
             <nav className="hidden md:flex space-x-8">
@@ -103,12 +103,12 @@ function App() {
                 </span>
               </h1>
               <p className="text-xl text-slate-300 leading-relaxed max-w-lg">
-                Steelphrase is an indestructible stainless steel plate for offline seed phrase storage. 
+                Coldphrase is an indestructible stainless steel plate for offline seed phrase storage. 
                 Protect your crypto assets with military-grade durability.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
-                  <span>Secure My Steelphrase</span>
+                  <span>Secure My Coldphrase</span>
                   <ArrowRight className="h-5 w-5" />
                 </button>
                 <button className="border border-slate-600 hover:border-cyan-400 px-8 py-4 rounded-lg font-semibold text-lg transition-all hover:bg-slate-800/50">
@@ -127,7 +127,7 @@ function App() {
                     </div>
                   </div>
                   <div className="mt-4 text-center text-slate-300 text-sm">
-                    Steelphrase™ Premium
+                    Coldphrase™ Premium
                   </div>
                 </div>
               </div>
@@ -281,7 +281,7 @@ function App() {
               Choose Your Protection Level
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              From essential security to ultimate protection, we have a Steelphrase for every need.
+              From essential security to ultimate protection, we have a Coldphrase for every need.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -404,7 +404,7 @@ function App() {
               </div>
               <h3 className="text-2xl font-bold mb-4">Buy</h3>
               <p className="text-slate-300 leading-relaxed">
-                Choose your Steelphrase model and receive it with premium packaging and setup instructions.
+                Choose your Coldphrase model and receive it with premium packaging and setup instructions.
               </p>
             </div>
             <div className="text-center group">
@@ -437,7 +437,7 @@ function App() {
               Trusted by Crypto Investors
             </h2>
             <p className="text-xl text-slate-300">
-              See what our customers say about their Steelphrase experience
+              See what our customers say about their Coldphrase experience
             </p>
           </div>
           <div className="relative">
@@ -494,7 +494,7 @@ function App() {
               <div className="flex items-center space-x-2">
                 <Shield className="h-8 w-8 text-cyan-400" />
                 <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                  Steelphrase
+                  Coldphrase
                 </span>
               </div>
               <p className="text-slate-300">
@@ -547,7 +547,7 @@ function App() {
           </div>
           <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
             <div className="text-slate-400 text-sm">
-              © 2024 Steelphrase. All rights reserved.
+              © 2024 Coldphrase. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm text-slate-400 mt-4 md:mt-0">
               <a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a>
